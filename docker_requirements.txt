@@ -1,0 +1,38 @@
+# =============================================================================
+# docker_requirements.txt — Dépendances installées dans l'image Docker
+# =============================================================================
+# Ce fichier ne contient QUE les paquets qu'on déclare explicitement.
+# Les sous-dépendances (ex: numpy requis par scikit-learn) sont résolues
+# automatiquement par pip au moment du build.
+#
+# À ne pas confondre avec requirements.txt qui est un pip freeze complet
+# de l'environnement local (utile pour reproduire le venv, pas pour Docker).
+# =============================================================================
+
+# --- Données brutes ---
+pymongo               # Client MongoDB : lecture/écriture des posts Bluesky bruts
+requests              # Appels HTTP vers l'API publique Bluesky
+
+# --- Pipeline de données ---
+pandas                # Manipulation des données tabulaires dans les nodes Kedro
+python-dotenv         # Lecture du fichier .env pour les variables d'environnement
+
+# --- Base de données projet ---
+psycopg2-binary       # Connecteur PostgreSQL (binary = pas besoin de compiler)
+pgvector              # Client Python pour l'extension pgvector (stockage des vecteurs)
+
+# --- Machine Learning ---
+scikit-learn          # TF-IDF (TfidfVectorizer) + KMeans + métriques
+joblib                # Sérialisation des modèles entraînés (dump/load)
+
+# --- Orchestration ---
+kedro==1.1.1          # Framework de pipeline de données
+kedro-airflow==0.10.0 # Plugin qui convertit les pipelines Kedro en DAGs Airflow
+kedro-datasets==9.1.1 # Connecteurs Kedro pour PostgreSQL, fichiers, etc.
+
+# --- Interface ---
+streamlit             # Application web de détection de fake news
+lingua-language-detector
+transformers
+torch
+sentence_transformers
