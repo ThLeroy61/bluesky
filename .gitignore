@@ -1,14 +1,38 @@
-# Environnement virtuel
-venv/
-airflow/logs/dad_id=app_script_dag
-airflow/logs/dag_processor_manager
-airflow/logs/scheduler
-.env 
+# ── Secrets & credentials ────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
 import_data/token.json
+**/token.json
 
+# ── Python ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
+# Environnements virtuels
+venv/
+.venv/
+env/
 
-conf/base/*
-!conf/base/.gitkeep
+# ── Airflow ──────────────────────────────────────────────────────────────
+airflow/logs/
+airflow/plugins/__pycache__/
+airflow/config/airflow.cfg
 
-ingestion_bluesky/airflow/logs/
+# ── Docker / volumes ─────────────────────────────────────────────────────
+postgres-db-volume/
+
+# ── Modèles & données ────────────────────────────────────────────────────
+*.joblib
+*.pkl
+*.pt
+
+# ── IDE / OS ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

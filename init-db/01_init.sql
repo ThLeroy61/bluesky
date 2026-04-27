@@ -1,0 +1,2 @@
+CREATE DATABASE bluesky_clean;
+CREATE EXTENSION IF NOT EXISTS vector;

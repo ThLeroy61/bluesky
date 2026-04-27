@@ -18,7 +18,8 @@ pandas                # Manipulation des données tabulaires dans les nodes Kedr
 python-dotenv         # Lecture du fichier .env pour les variables d'environnement
 
 # --- Base de données projet ---
-psycopg2-binary       # Connecteur PostgreSQL (binary = pas besoin de compiler)
+psycopg[binary]       # Connecteur PostgreSQL v3 (utilisé par import_data, robuste sur Windows)
+psycopg2-binary       # Conservé pour les libs qui en dépendent encore (kedro-datasets, SQLAlchemy)
 pgvector              # Client Python pour l'extension pgvector (stockage des vecteurs)
 
 # --- Machine Learning ---
