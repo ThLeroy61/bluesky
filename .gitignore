@@ -1,0 +1,12 @@
+# Environnement virtuel
+venv_data_m1/
+airflow/logs/dad_id=app_script_dag
+airflow/logs/dag_processor_manager
+airflow/logs/scheduler
+.env 
+import_data/token.json
+
+conf/base/*
+!conf/base/.gitkeep
+
+ingestion_bluesky/airflow/logs/
