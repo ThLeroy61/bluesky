@@ -50,7 +50,6 @@ def bluesky_ingest():
 
     @task
     def ensure_table() -> str:
-        """Crée la table 'posts' si elle n'existe pas. Idempotent."""
         if not functions.LOGIN or not functions.PASS:
             raise RuntimeError("LOGIN_BLUESKY et PASS_BLUESKY non définis dans .env")
         functions.ensure_table()
@@ -58,17 +57,14 @@ def bluesky_ingest():
 
     @task
     def fetch_author_feed(handle: str) -> None:
-        """Récupère le fil d'un auteur ciblé."""
         get_author_feed(handle)
 
     @task
     def fetch_timeline_task() -> None:
-        """Récupère le fil d'actualité général du compte connecté."""
         get_timeline()
 
     @task
     def fetch_search_category(category: str, queries: list[str]) -> None:
-        """Récupère tous les posts pour une catégorie de mots-clés."""
         print(f"=== Catégorie : {category} ({len(queries)} requêtes) ===")
         for q in queries:
             getItems.get_search_post(q, limit=100)
@@ -95,7 +91,7 @@ def bluesky_ingest():
     ]
 
     # Toutes les tâches d'ingestion attendent que la table existe,
-    # mais sont indépendantes entre elles → parallélisation possible.
+    # mais sont indépendantes entre elles
     ready >> author_tasks
     ready >> timeline_task
     ready >> search_tasks

@@ -8,14 +8,6 @@ MAX_ITEMS = 5 if TEST_MODE else 100000
 
 
 def fetch_and_store_items(endpoint: str, params: dict, source_name: str):
-    """
-    Récupère un flux Bluesky page par page et stocke chaque post dans PostgreSQL.
-
-    Stratégie d'upsert :
-      - INSERT ... ON CONFLICT (post_id) DO UPDATE ... WHERE posts.cid != EXCLUDED.cid
-      → un post existant n'est mis à jour que si son cid a changé (contenu modifié).
-      → atomique et sans double requête SELECT préalable.
-    """
     token = functions.load_token(functions.LOGIN, functions.PASS)
     if not token:
         raise SystemExit("Impossible d'obtenir un access token.")

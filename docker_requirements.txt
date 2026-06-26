@@ -37,3 +37,7 @@ lingua-language-detector
 transformers
 torch
 sentence_transformers
+codecarbon
+tiktoken
+sentencepiece
+protobuf

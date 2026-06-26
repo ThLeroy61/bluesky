@@ -1,0 +1,26 @@
+# =============================================================================
+# parameters.yml — Paramètres métier du pipeline
+# =============================================================================
+# Aucune valeur sensible ici. La connection string SQLAlchemy est désormais
+# construite à partir de l'environnement (cf credentials.yml), donc plus de
+# postgres_con_string en dur.
+# =============================================================================
+
+# --- Paramètres de nettoyage (validate_quality) ---
+min_text_length: 12              # Longueur minimale d'un texte pour être conservé
+allowed_languages:               # Langues acceptées
+  - "fr"
+  - "en"
+
+# --- Paramètres du modèle ML (gardés pour le pipeline ml) ---
+n_clusters: 12
+tfidf_max_features: 18000
+tfidf_min_df: 100
+tfidf_max_df: 0.8
+kmeans_batch_size: 8192
+training_sample_size: 100000
+models_dir: "data/06_models"
+embedding_model: "paraphrase-multilingual-MiniLM-L12-v2"
+refit_threshold: 0.20
+sentiment_batch_size: 32
+fakenews_batch_size: 16

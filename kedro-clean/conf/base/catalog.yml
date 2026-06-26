@@ -1,0 +1,14 @@
+posts_raw:
+  type: kedro_datasets.pandas.SQLQueryDataset
+  sql: |
+    SELECT p.post_id, p.cid, p.source, p.fetched_at,
+           p.profile_id, p.profile_name, p.profile_display_name,
+           p.text_raw, p.created_at,
+           p.like_count, p.repost_count, p.quote_count,
+           p.bookmark_count, p.reply_count
+    FROM posts p
+    WHERE NOT EXISTS (
+        SELECT 1 FROM bluesky_posts_clean c
+        WHERE c.post_id = p.post_id
+    )
+  credentials: postgres_creds

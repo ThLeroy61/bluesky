@@ -32,7 +32,6 @@ TOKEN_FILE = os.path.join(BASE_DIR, "token.json")
 # ── PostgreSQL ────────────────────────────────────────────────────────────────
 
 def get_pg_connection():
-    """Connexion PostgreSQL via psycopg v3 (gestion Unicode robuste sur Windows)."""
     return psycopg.connect(
         host=os.getenv("POSTGRES_HOST", "127.0.0.1"),
         port=int(os.getenv("POSTGRES_PORT", "5432")),
@@ -44,10 +43,6 @@ def get_pg_connection():
 
 
 def ensure_table():
-    """
-    Crée la table 'posts' si elle n'existe pas encore.
-    post_id (URI Bluesky) est la clé primaire : garantit l'unicité côté DB.
-    """
     ddl = """
     CREATE TABLE IF NOT EXISTS posts (
         post_id             TEXT        PRIMARY KEY,
@@ -76,10 +71,8 @@ def ensure_table():
         conn.close()
 
 
-# ── Auth Bluesky ──────────────────────────────────────────────────────────────
 
 def login(identifier: str, password: str, timeout: int = 10):
-    """Authentification auprès de Bluesky, persistance des tokens dans token.json."""
     url = f"{API_BASE}/com.atproto.server.createSession"
     payload = {"identifier": identifier, "password": password}
 
