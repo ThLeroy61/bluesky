@@ -134,8 +134,8 @@ Chaque étape Kedro est déclenchée par Airflow via `BashOperator` (`kedro run 
 ### 1. Cloner le projet
 
 ```bash
-git clone <url-du-repo>
-cd <nom-du-repo>
+git clone https://github.com/ThLeroy61/bluesky.git
+cd bluesky
 ```
 
 ### 2. Configurer les variables d'environnement
